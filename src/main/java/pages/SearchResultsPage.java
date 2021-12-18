@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
-import static utils.DriverFactory.getDriver;
+import static utils.WebDriverSingleton.getDriver;
 
 public class SearchResultsPage extends BasePage {
     private static final Logger LOG = Logger.getLogger(String.valueOf(SearchResultsPage.class));
@@ -47,7 +47,7 @@ public class SearchResultsPage extends BasePage {
 
     public SearchResultsPage clickFirstElementButton() {
         waitElementToBeClickable(firstElementBucket);
-        getDriver().findElement(firstElementBucket).click();
+        clickWithJavaScript(firstElementBucket);
         LOG.info("First element's bucket is clicked.");
         return this;
     }

@@ -5,8 +5,9 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.asserts.SoftAssert;
 
-import static utils.DriverFactory.getDriver;
+import static utils.WebDriverSingleton.getDriver;
 
 public abstract class BasePage {
     WebDriverWait wait;

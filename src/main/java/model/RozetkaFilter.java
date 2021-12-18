@@ -34,4 +34,5 @@ public class RozetkaFilter {
     public void setAmount(int amount) {
         this.amount = amount;
     }
+
 }

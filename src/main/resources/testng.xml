@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Sample Suite" data-provider-thread-count = "3">
+    <test name="Sample Test">
+        <parameter name="Thing" value="Смартфоны" />
+        <parameter name="Brand" value="Xiaomi" />
+        <parameter name="Amount" value="50000" />
+        <classes>
+            <class name="SearchResultsTest"/>
+        </classes>
+    </test>
+</suite>
