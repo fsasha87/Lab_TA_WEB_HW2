@@ -5,28 +5,42 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class PropertiesReader {
-    Properties property = new Properties();
+    static Properties property;
 
-    public PropertiesReader() {
+    static {
         try (FileInputStream fis = new FileInputStream("src/main/resources/config.properties")) {
+            property = new Properties();
             property.load(fis);
         } catch (IOException e) {
             System.err.println("Properties file does not exist");
         }
     }
 
-    public String getUrl() {
+    public static String getUrl() {
         String URL = property.getProperty("URL");
         return URL;
     }
 
-    public String getDriverName() {
+    public static String getDriverName() {
         String driverName = property.getProperty("CHROME_DRIVER_NAME");
         return driverName;
     }
 
-    public String getDriverLocation() {
+    public static String getDriverLocation() {
         String driverLocation = property.getProperty("CHROME_DRIVER_LOCATION");
         return driverLocation;
     }
+
+    public static int getImplicityWaitValue() {
+        int value = Integer.parseInt(property.getProperty("IMPLICITLY_WAIT_VALUE"));
+        return value;
+    }
+
+    public static int getExplicityWaitValue() {
+        int value = Integer.parseInt(property.getProperty("EXPLICITLY_WAIT_VALUE"));
+        return value;
+    }
+
+
+
 }

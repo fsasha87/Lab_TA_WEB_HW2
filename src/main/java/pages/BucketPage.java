@@ -28,7 +28,6 @@ public class BucketPage extends BasePage {
     }
 
     public BucketPage verifyAmountWithSoftAssert(int amount) {
-        SoftAssert softAssert = new SoftAssert();
         String s = getDriver().findElement(priceAmount).getText();
         int price = Integer.parseInt(s);
         LOG.info(String.format("Enough money to pay. Price %d is less than %d.  Checked with SoftAssert", price, amount));

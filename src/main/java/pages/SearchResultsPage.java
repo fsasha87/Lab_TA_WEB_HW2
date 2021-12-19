@@ -45,7 +45,8 @@ public class SearchResultsPage extends BasePage {
         return this;
     }
 
-    public SearchResultsPage clickFirstElementButton() {
+    public SearchResultsPage clickFirstElementButton() throws InterruptedException {
+        Thread.sleep(3000);
         waitElementToBeClickable(firstElementBucket);
         clickWithJavaScript(firstElementBucket);
         LOG.info("First element's bucket is clicked.");

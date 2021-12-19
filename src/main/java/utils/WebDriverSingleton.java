@@ -17,11 +17,10 @@ public class WebDriverSingleton {
             return webDriverThreadLocal.get();
         }
         WebDriver instance;
-        PropertiesReader propertiesReader = new PropertiesReader();
-        System.setProperty(propertiesReader.getDriverName(), propertiesReader.getDriverLocation());
+        System.setProperty(PropertiesReader.getDriverName(), PropertiesReader.getDriverLocation());
         instance = new ChromeDriver();
         instance.manage().window().maximize();
-        instance.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        instance.manage().timeouts().implicitlyWait(PropertiesReader.getImplicityWaitValue(), TimeUnit.SECONDS);
         webDriverThreadLocal.set(instance);
         LOG.info("WebDriver is created");
         return webDriverThreadLocal.get();
