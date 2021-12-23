@@ -40,7 +40,14 @@ public class PropertiesReader {
         int value = Integer.parseInt(property.getProperty("EXPLICITLY_WAIT_VALUE"));
         return value;
     }
-
+    public static int getFluentWaitValue() {
+        int value = Integer.parseInt(property.getProperty("FLUENT_WAIT_TIME"));
+        return value;
+    }
+    public static int getFluentPollValue() {
+        int value = Integer.parseInt(property.getProperty("FLUENT_POLL_TIME"));
+        return value;
+    }
 
 
 }

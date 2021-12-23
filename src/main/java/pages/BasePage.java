@@ -2,41 +2,64 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.asserts.SoftAssert;
 import utils.PropertiesReader;
+
+import java.util.List;
+import java.util.NoSuchElementException;
 
 import static utils.WebDriverSingleton.getDriver;
 
 public abstract class BasePage {
     WebDriverWait wait;
     Actions actions;
-    JavascriptExecutor jse;
-    SoftAssert softAssert;
 
     {
         wait = new WebDriverWait(getDriver(), PropertiesReader.getExplicityWaitValue());
         actions = new Actions(getDriver());
-        jse = (JavascriptExecutor) getDriver();
-        softAssert = new SoftAssert();
     }
 
-    public void waitPresenceOfElementLocated(By locator) {
-        wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+    public WebElement getElement(By locator) {
+        return getDriver().findElement(locator);
     }
 
-    public void waitElementToBeClickable(By locator) {
-        wait.until(ExpectedConditions.elementToBeClickable(locator));
+    public List<WebElement> getElements(By locator) {
+        return getDriver().findElements(locator);
     }
 
-    public void moveToElement(By locator) {
+    public void scrollToElement(By locator) {
         actions.moveToElement(getDriver().findElement(locator));
     }
 
-    public void clickWithJavaScript(By locator) {
-        jse.executeScript("arguments[0].click()", getDriver().findElement(locator));
+    public void waitToBeClicableIgnorExc(By locator) {
+        wait.ignoring(StaleElementReferenceException.class)
+                .until(ExpectedConditions.elementToBeClickable(locator));
+    }
+
+    public boolean isAnyElementFound(List<WebElement> elements, By by) throws InterruptedException {
+        boolean flag = false;
+        if (elements.size() > 0)
+            flag = true;
+        else {
+            for (int i = 0; (i < PropertiesReader.getExplicityWaitValue()); i++) {
+                Thread.sleep(1000);
+                elements = getDriver().findElements(by);
+            }
+        }
+        return flag;
+    }
+
+    public boolean isDisplayed(By locator) {
+        try {
+            return getElement(locator)
+                    .isDisplayed();
+        } catch (NoSuchElementException e) {
+            return false;
+        }
     }
 
     public void waitUntillPageLoad() {

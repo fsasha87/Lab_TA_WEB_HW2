@@ -1,6 +1,5 @@
 package utils;
 
-import model.RozetkaFilter;
 import model.RozetkaFilters;
 
 import javax.xml.bind.JAXBContext;

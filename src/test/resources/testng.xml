@@ -9,7 +9,7 @@
         <parameter name="Brand" value="Xiaomi" />
         <parameter name="Amount" value="50000" />
         <classes>
-            <class name="SearchResultsTest">
+            <class name="tests.SearchResultsTest">
                 <methods>
                     <include name="verifyPriceOfSearchedCommodity"/>
                     <include name="verifyPriceOfSearchedCommodityWithParams"/>

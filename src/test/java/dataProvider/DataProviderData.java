@@ -13,12 +13,6 @@ public class DataProviderData {
         JaxbReader jaxbReader = new JaxbReader();
         RozetkaFilters rozetkaFilters = jaxbReader.convert();
         List<RozetkaFilter> rozetkaFilterList = rozetkaFilters.getRozetkaFilters();
-        Object[][] table = new Object[rozetkaFilterList.size()][3];
-        for (int i = 0; i < table.length; i++) {
-            table[i][0] = rozetkaFilterList.get(i).getThing();
-            table[i][1] = rozetkaFilterList.get(i).getBrand();
-            table[i][2] = rozetkaFilterList.get(i).getAmount();
-        }
-        return table;
+        return rozetkaFilterList.stream().map(i -> new Object[]{i.getThing(), i.getBrand(), i.getAmount()}).toArray(Object[][]::new);
     }
 }
