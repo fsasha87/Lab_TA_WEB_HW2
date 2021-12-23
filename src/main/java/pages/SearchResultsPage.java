@@ -40,8 +40,8 @@ public class SearchResultsPage extends BasePage {
 
     public SearchResultsPage selectSortOption() {
         scrollToElement(sortButton);
-//        new Button(getElement(sortButton)).clickWithFluentWaiter();
-        new Button(getElement(sortButton)).clickWithJavaScript();
+        new Button(getElement(sortButton)).clickWithFluentWaiter();
+//        new Button(getElement(sortButton)).clickWithJavaScript();
         new Button(getElement(selectOption)).clickWithJavaScript();
         LOG.info("Sort option was selected.");
         return this;

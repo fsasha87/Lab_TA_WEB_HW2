@@ -19,6 +19,7 @@ public class BucketPage extends BasePage {
     }
 
     public int getPriceOfGood() {
+        waitVisibilityIgnorExc(priceAmount);
         String s = getElement(priceAmount).getText();
         int price = Integer.parseInt(s);
         return price;

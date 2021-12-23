@@ -1,7 +1,6 @@
 package tests;
 
 import org.apache.log4j.Logger;
-import org.testng.ITestContext;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import utils.PropertiesReader;
@@ -22,12 +21,4 @@ public abstract class BaseTest {
         WebDriverSingleton.close();
     }
 
-    @BeforeMethod (alwaysRun = true)
-    public void beforeTest(final ITestContext testContext) {
-        LOG.info(String.format("Test Case started: %s",testContext.getName()));
-    }
-    @AfterMethod (alwaysRun = true)
-    public void afterTest(final ITestContext testContext) {
-        LOG.info(String.format("Test Case ended: %s",testContext.getName()));
-    }
 }
