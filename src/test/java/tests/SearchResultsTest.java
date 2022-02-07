@@ -21,7 +21,7 @@ public class SearchResultsTest extends BaseTest {
     }
 
     @Test(description = "Verify that price is less than amount (data from parameters)",
-            enabled = true)
+            enabled = false)
     @Parameters({"Thing", "Brand", "Amount"})
     public void verifyPriceOfSearchedCommodityWithParams(String thing, String brand, int amount) {
         new SearchResultsPageBO()
@@ -30,5 +30,16 @@ public class SearchResultsTest extends BaseTest {
         new Verifier()
                 .verifyAmountWithSoftAssert(amount)
                 .verifyAmount(amount);
+    }
+
+    @Test(description = "Verify that price is less than amount (data from parameters)",
+            enabled = false)
+    public void verifyPriceOfSearchedCommodity2() {
+        new SearchResultsPageBO()
+                .typeCategory("Laptop")
+                .selectGoodByBrand("Lenovo");
+        new Verifier()
+                .verifyAmountWithSoftAssert(50000)
+                .verifyAmount(50000);
     }
 }

@@ -11,7 +11,7 @@ public class JaxbReader {
     public RozetkaFilters convert() {
         RozetkaFilters rozetkaFilters = null;
         try {
-            File file = new File("src/main/resources/rozetkaFilters.xml");
+            File file = new File("src/test/resources/rozetkaFilters.xml");
             JAXBContext context = JAXBContext.newInstance(RozetkaFilters.class);
             Unmarshaller unmarshaller = context.createUnmarshaller();
             rozetkaFilters = (RozetkaFilters) unmarshaller.unmarshal(file);

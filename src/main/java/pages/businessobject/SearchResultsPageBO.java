@@ -13,8 +13,7 @@ public class SearchResultsPageBO {
     }
     public SearchResultsPageBO selectGoodByBrand(String brand){
         new SearchResultsPage()
-                .enterBrandField(brand)
-                .clickCheckbox()
+                .enterBrandFieldAndClickCheckbox(brand)
                 .selectSortOption()
                 .clickFirstElementButton();
         new BucketPage()

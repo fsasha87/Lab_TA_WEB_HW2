@@ -8,6 +8,7 @@ import utils.JaxbReader;
 import java.util.List;
 
 public class DataProviderData {
+
     @DataProvider(name = "dP1", parallel = true)
     public Object[][] dataProviderMethod() {
         JaxbReader jaxbReader = new JaxbReader();

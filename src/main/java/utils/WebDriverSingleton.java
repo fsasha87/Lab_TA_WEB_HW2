@@ -3,6 +3,7 @@ package utils;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.util.concurrent.TimeUnit;
 
@@ -18,7 +19,8 @@ public class WebDriverSingleton {
         }
         WebDriver instance;
         System.setProperty(PropertiesReader.getDriverName(), PropertiesReader.getDriverLocation());
-        instance = new ChromeDriver();
+//        instance = new ChromeDriver();
+        instance = new FirefoxDriver();
         instance.manage().window().maximize();
         instance.manage().timeouts().implicitlyWait(PropertiesReader.getImplicityWaitValue(), TimeUnit.SECONDS);
         webDriverThreadLocal.set(instance);
@@ -39,3 +41,8 @@ public class WebDriverSingleton {
     }
 
 }
+
+
+
+//org.openqa.selenium.WebDriverException:
+//unknown error: Cannot construct KeyEvent from non-typeable key

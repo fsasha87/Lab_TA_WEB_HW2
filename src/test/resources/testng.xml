@@ -13,6 +13,8 @@
                 <methods>
                     <include name="verifyPriceOfSearchedCommodity"/>
                     <include name="verifyPriceOfSearchedCommodityWithParams"/>
+                    <include name="verifyPriceOfSearchedCommodity2"/>
+
                 </methods>
             </class>
         </classes>

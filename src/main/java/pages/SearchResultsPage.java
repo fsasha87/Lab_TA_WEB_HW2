@@ -15,24 +15,23 @@ public class SearchResultsPage extends BasePage {
 
     By brandField = By.xpath("(//input[@name='searchline'])[1]");
     TextInput brandFieldTextInput = new TextInput(getElement(brandField));
-    By brandCheckbox = By.xpath("//div[@data-filter-name='producer']//*[@type='checkbox']/parent::a");
     By sortButton = By.cssSelector("select");
     By selectOption = By.cssSelector("option[value='5: action']");
     By firstElementBucket = By.xpath("(//div[@class='goods-tile__prices']//button)[1]");
+    String brandCheckbox = "//a[@data-id='%s']";
 
-    public SearchResultsPage enterBrandField(String brand) {
+    public SearchResultsPage enterBrandFieldAndClickCheckbox(String brand) {
         brandFieldTextInput.waitPresenceOfElementLocated(brandField);
         brandFieldTextInput.moveToElement(brandField);
         brandFieldTextInput.sendKeysInEmptyField(brand + Keys.RETURN);
         LOG.info(String.format("Brand '%s' was selected.", brand));
-        return this;
-    }
-
-    public SearchResultsPage clickCheckbox() {
-        new CheckBox(getElement(brandCheckbox)).waitTillOneElementIsDisplayes(brandCheckbox);
-        List<WebElement> listCheckbox = getElements(brandCheckbox);
-        new CheckBox(listCheckbox.get(0)).setCheckBox(true);
-        String str = listCheckbox.get(0).getAttribute("href");
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        WebElement brandCheckBox = getElement(By.xpath(String.format(brandCheckbox, brand)));
+        String str = brandCheckBox.getAttribute("href");
         String[] strings = str.split("=");
         LOG.info(String.format("Checkbox '%s' was selected.", strings[strings.length - 1]));
         return this;
@@ -40,8 +39,8 @@ public class SearchResultsPage extends BasePage {
 
     public SearchResultsPage selectSortOption() {
         scrollToElement(sortButton);
-        new Button(getElement(sortButton)).clickWithFluentWaiter();
-//        new Button(getElement(sortButton)).clickWithJavaScript();
+//        new Button(getElement(sortButton)).clickWithFluentWaiter();
+        new Button(getElement(sortButton)).clickWithJavaScript();
         new Button(getElement(selectOption)).clickWithJavaScript();
         LOG.info("Sort option was selected.");
         return this;
