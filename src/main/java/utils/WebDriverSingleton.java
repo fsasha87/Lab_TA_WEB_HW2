@@ -42,8 +42,6 @@ public class WebDriverSingleton {
 
 }
 
-
-
 //org.openqa.selenium.WebDriverException:
 //unknown error: Cannot construct KeyEvent from non-typeable key
 
