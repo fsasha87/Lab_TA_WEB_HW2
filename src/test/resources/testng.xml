@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="Sample Suite" data-provider-thread-count = "3">
     <listeners>
-        <listener class-name="utils.TestNGListener"></listener>
+        <listener class-name="utils.TestNGListener"/>
     </listeners>
     <test name="Sample Test">
         <parameter name="Thing" value="Смартфоны" />
@@ -11,10 +11,10 @@
         <classes>
             <class name="tests.SearchResultsTest">
                 <methods>
-                    <include name="verifyPriceOfSearchedCommodity"/>
+                    <include name="verifyPriceOfSearchedCommodityDP"/>
                     <include name="verifyPriceOfSearchedCommodityWithParams"/>
-                    <include name="verifyPriceOfSearchedCommodity2"/>
-
+                    <include name="verifyPriceOfSearchedCommodity"/>
+                    <include name="verifyPriceOfSearchedIncorrectCommodity"/>
                 </methods>
             </class>
         </classes>
