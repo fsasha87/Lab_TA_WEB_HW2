@@ -1,6 +1,8 @@
 package tests;
 
-import dataProvider.DataProviderData;
+import dataProvider.DataProviderCSV;
+import dataProvider.DataProviderXML;
+import dataProvider.DataProviderXLSX;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
@@ -16,29 +18,6 @@ import utils.TestNGListener;
 @Feature("Search-results-page tests")
 @Listeners(TestNGListener.class)
 public class SearchResultsTest extends BaseTest {
-
-    @Test(description = "Verify that price is less than amount (data from xml)",
-            dataProvider = "dP1", dataProviderClass = DataProviderData.class, enabled = true)
-    public void verifyPriceOfSearchedCommodityDP(String thing, String brand, int amount) {
-        new SearchResultsPageBO()
-                .typeCategory(thing)
-                .selectGoodByBrand(brand);
-        new Verifier()
-                .verifyAmountWithSoftAssert(amount)
-                .verifyAmount(amount);
-    }
-
-    @Test(description = "Verify that price is less than amount (data from parameters)",
-            enabled = true)
-    @Parameters({"Thing", "Brand", "Amount"})
-    public void verifyPriceOfSearchedCommodityWithParams(String thing, String brand, int amount) {
-        new SearchResultsPageBO()
-                .typeCategory(thing)
-                .selectGoodByBrand(brand);
-        new Verifier()
-                .verifyAmountWithSoftAssert(amount)
-                .verifyAmount(amount);
-    }
 
     @Test(description = "Verify that price is less than amount. Positive test",
             enabled = true)
@@ -62,5 +41,65 @@ public class SearchResultsTest extends BaseTest {
                 .verifyAmountWithSoftAssert(50000)
                 .verifyAmount(50000);
     }
+
+
+    @Test(description = "Verify that price is less than amount (data from xml)",
+            dataProvider = "DpXML", dataProviderClass = DataProviderXML.class, enabled = true)
+    public void verifyPriceOfSearchedCommodityXML(String thing, String brand, int amount) {
+        new SearchResultsPageBO()
+                .typeCategory(thing)
+                .selectGoodByBrand(brand);
+        new Verifier()
+                .verifyAmountWithSoftAssert(amount)
+                .verifyAmount(amount);
+    }
+
+    @Test(description = "Verify that price is less than amount (data from xml-parameters)",
+            enabled = true)
+    @Parameters({"Thing", "Brand", "Amount"})
+    public void verifyPriceOfSearchedCommodityXMLWithParams(String thing, String brand, int amount) {
+        new SearchResultsPageBO()
+                .typeCategory(thing)
+                .selectGoodByBrand(brand);
+        new Verifier()
+                .verifyAmountWithSoftAssert(amount)
+                .verifyAmount(amount);
+    }
+
+
+
+    @Test(description = "Verify that price is less than amount (data from csv)",
+            dataProvider = "DpCSVReader", dataProviderClass = DataProviderCSV.class, enabled = true)
+    public void verifyPriceOfSearchedCommodityCSV(String thing, String brand, String amount) {
+        new SearchResultsPageBO()
+                .typeCategory(thing)
+                .selectGoodByBrand(brand);
+        new Verifier()
+                .verifyAmountWithSoftAssert(Integer.parseInt(amount))
+                .verifyAmount(Integer.parseInt(amount));
+    }
+
+    @Test(description = "Verify that price is less than amount (data from CSV)",
+            dataProvider = "DpCSV", dataProviderClass = DataProviderCSV.class, enabled = true)
+    public void verifyPriceOfSearchedCommodityCSV2(String thing, String brand, String amount) {
+        new SearchResultsPageBO()
+                .typeCategory(thing)
+                .selectGoodByBrand(brand);
+        new Verifier()
+                .verifyAmountWithSoftAssert(Integer.parseInt(amount))
+                .verifyAmount(Integer.parseInt(amount));
+    }
+
+    @Test(description = "Verify that price is less than amount (data from XLSX)",
+            dataProvider = "DpXLSX", dataProviderClass = DataProviderXLSX.class, enabled = true)
+    public void verifyPriceOfSearchedCommodityXLSX(String thing, String brand, String amount) {
+        new SearchResultsPageBO()
+                .typeCategory(thing)
+                .selectGoodByBrand(brand);
+        new Verifier()
+                .verifyAmountWithSoftAssert(Integer.parseInt(amount))
+                .verifyAmount(Integer.parseInt(amount));
+    }
+
 
 }

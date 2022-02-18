@@ -11,10 +11,13 @@
         <classes>
             <class name="tests.SearchResultsTest">
                 <methods>
-                    <include name="verifyPriceOfSearchedCommodityDP"/>
-                    <include name="verifyPriceOfSearchedCommodityWithParams"/>
                     <include name="verifyPriceOfSearchedCommodity"/>
                     <include name="verifyPriceOfSearchedIncorrectCommodity"/>
+                    <include name="verifyPriceOfSearchedCommodityXML"/>
+                    <include name="verifyPriceOfSearchedCommodityXMLWithParams"/>
+                    <include name="verifyPriceOfSearchedCommodityCSV"/>
+                    <include name="verifyPriceOfSearchedCommodityCSV2"/>
+                    <include name="verifyPriceOfSearchedCommodityXLSX"/>
                 </methods>
             </class>
         </classes>
